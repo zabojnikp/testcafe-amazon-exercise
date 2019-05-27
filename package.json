@@ -1,0 +1,29 @@
+{
+  "name": "testcafe-amazon-exercise",
+  "version": "1.0.0",
+  "description": "Amazon Web Shop UI test samples using TestCafe",
+  "scripts": {
+    "test": "testcafe chrome tests/specs/*.ts -r spec,json:reports/specs_report.json -S -s reports/screenshots",
+    "lint": "tslint -c tslint.json 'tests/**/*.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zabojnikp/testcafe-amazon-exercise.git"
+  },
+  "keywords": [
+    "amazon",
+    "web",
+    "testing",
+    "testcafe",
+    "automation",
+    "typescript"
+  ],
+  "author": "Petra Zabojnikova",
+  "license": "ISC",
+  "devDependencies": {
+    "testcafe": "^1.1.4",
+    "testcafe-reporter-json": "^2.1.0",
+    "tslint": "^5.16.0"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,24 @@
+{
+  "baseUrl": "https://www.amazon.com",
+  "product1": {
+    "title": "Asdfghjkl: A lined notebook for your everyday needs",
+    "productUrl": "Asdfghjkl-lined-notebook-everyday-needs",
+    "productId": "1724984616",
+    "key": "asdfghjkl",
+    "author": "Jay Wilson",
+    "category": "Books",
+    "url": "stripbooks-intl-ship",
+    "type": "Paperback",
+    "stock": "In Stock",
+    "price": 5.99
+  },
+  "product2": {
+    "title": "Super Mario Nintendo Large Plush Pillow Buddy Toy - 20",
+    "productUrl": "Super-Mario-Nintendo-Large-Pillow",
+    "productId": "B01H49P75C",
+    "key": "nintendo",
+    "author": "Super Mario",
+    "stock": "Only 12 left in stock",
+    "price": 36.95
+  }
+}
