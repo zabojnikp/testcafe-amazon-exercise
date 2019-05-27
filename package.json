@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Amazon Web Shop UI test samples using TestCafe",
   "scripts": {
-    "test": "testcafe chrome tests/specs/*.ts -r spec,json:reports/specs_report.json -S -s reports/screenshots",
+    "test": "testcafe chrome tests/specs/*.ts -r spec,json:reports/specs_report.json -S -s reports/screenshots -e",
     "lint": "tslint -c tslint.json 'tests/**/*.ts'"
   },
   "repository": {

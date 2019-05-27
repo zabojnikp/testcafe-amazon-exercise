@@ -38,9 +38,9 @@ add:
 
 Supported browsers by TestCafe:
 Google Chrome,
-Internet Explorer (11+),
 Microsoft Edge,
 Mozilla Firefox,
+Internet Explorer (11+),
 Safari.
 
 NOTE: You need to have browser installed on your pc!

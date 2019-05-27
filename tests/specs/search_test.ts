@@ -11,7 +11,7 @@ fixture`It tests Amazon search functionality`.page(data.baseUrl);
 
 test('AS001 - It searches the product based on category -> verifies URL and search results', async (t) => {
   await search.selectCategory(data.product1.category);
-  await t.expect(search.categoryField.innerText).eql(data.product1.category);
+  await t.expect(search.categoryField.innerText).contains(data.product1.category);
   await search.searchProduct(data.product1.key);
 
   const getPageUrl = ClientFunction(() => window.location.href);
@@ -24,7 +24,7 @@ test('AS001 - It searches the product based on category -> verifies URL and sear
     .expect(search.resultsText.innerText)
     .contains(data.product1.key)
     .expect(search.searchInput.value)
-    .eql(data.product1.key);
+    .contains(data.product1.key);
 });
 test.before(async (t) => {
   await t.navigateTo(`${data.baseUrl}/s?k=${data.product1.key}&i=${data.product1.url}`);
@@ -39,19 +39,19 @@ test.before(async (t) => {
     .expect(await getPageUrl())
     .contains(`${data.baseUrl}/${data.product1.productUrl}/dp/${data.product1.productId}`)
     .expect(itemDetail.productTitle.innerText)
-    .eql(data.product1.title)
+    .contains(data.product1.title)
     .expect(itemDetail.productTitle.visible)
     .ok()
     .expect(itemDetail.author.innerText)
-    .eql(data.product1.author)
+    .contains(data.product1.author)
     .expect(itemDetail.author.visible)
     .ok()
     .expect(itemDetail.typeDetail.innerText)
-    .eql(data.product1.type)
+    .contains(data.product1.type)
     .expect(itemDetail.typeDetail.visible)
     .ok()
     .expect(itemDetail.priceDetail.innerText)
-    .eql(`$${data.product1.price}`)
+    .contains(`$${data.product1.price}`)
     .expect(itemDetail.priceDetail.visible)
     .ok()
     .expect(itemDetail.imageDetail.visible && itemDetail.imageDetail.exists)

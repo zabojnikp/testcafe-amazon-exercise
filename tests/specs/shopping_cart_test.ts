@@ -27,7 +27,7 @@ test.before(async (t) => {
   await t.navigateTo(`${data.baseUrl}/${data.product1.productUrl}/dp/${data.product1.productId}`);
 })('AW001 - It adds a product to the cart -> verifies elements on pre-checkout page -> transfers to shopping cart', async (t) => {
   // add product to the cart
-  await t.expect(itemDetail.priceBuy.innerText).eql(`$${data.product1.price}`);
+  await t.expect(itemDetail.priceBuy.innerText).contains(`$${data.product1.price}`);
   await itemDetail.addToCart();
   await t.wait(2000);
 
@@ -40,7 +40,7 @@ test.before(async (t) => {
     .expect(orderSummary.orderTotalText.innerText)
     .contains(`Cart subtotal (1 item)`)
     .expect(orderSummary.orderTotalPrice.innerText)
-    .eql(`$${data.product1.price}`)
+    .contains(`$${data.product1.price}`)
     .expect(orderSummary.cartBtn.visible)
     .ok()
     .expect(orderSummary.checkoutBtn.visible)
@@ -49,7 +49,7 @@ test.before(async (t) => {
   // verify user is transfered to shopping cart page
   await t.click(orderSummary.cartBtn);
   await t.expect(shoppingCartPage.pageTitle.visible).ok();
-  await t.expect(shoppingCartPage.pageTitle.innerText).eql('Shopping Cart');
+  await t.expect(shoppingCartPage.pageTitle.innerText).contains('Shopping Cart');
 });
 test.before(async (t) => {
   await t.navigateTo(`${data.baseUrl}/${data.product1.productUrl}/dp/${data.product1.productId}`);
@@ -60,13 +60,13 @@ test.before(async (t) => {
   await t.click(orderSummary.orderedItem);
   await t
     .expect(orderSummary.itemTitle.innerText)
-    .eql(data.product1.title)
+    .contains(data.product1.title)
     .expect(orderSummary.itemCreator.innerText)
     .contains(data.product1.author)
     .expect(orderSummary.itemPrice.innerText)
-    .eql(`$${data.product1.price}`)
+    .contains(`$${data.product1.price}`)
     .expect(orderSummary.itemStock.innerText)
-    .eql(data.product1.stock)
+    .contains(data.product1.stock)
     .expect(orderSummary.itemPicture.visible && orderSummary.itemPicture.exists)
     .ok()
     .expect(orderSummary.itemTitleLink.getAttribute('href'))
@@ -76,7 +76,7 @@ test.before(async (t) => {
 
   // verify user is directed to detail page
   await t.click(orderSummary.itemTitleLink);
-  await t.expect(itemDetail.productTitle.innerText).eql(data.product1.title);
+  await t.expect(itemDetail.productTitle.innerText).contains(data.product1.title);
 });
 test.before(async (t) => {
   await t.navigateTo(`${data.baseUrl}/${data.product1.productUrl}/dp/${data.product1.productId}`);
@@ -97,7 +97,7 @@ test.before(async (t) => {
     .expect(shoppingCartPage.productPrice.innerText)
     .contains(`${data.product1.price}`)
     .expect(shoppingCartPage.productAvailability.innerText)
-    .eql(data.product1.stock)
+    .contains(data.product1.stock)
     .expect(shoppingCartPage.productQuantity.value)
     .eql('1')
     .expect(shoppingCartPage.cartSubtotalItems.innerText)
@@ -121,7 +121,7 @@ test.before(async (t) => {
   await t.click(shoppingCartPage.quantityUpdateBtn);
   await t
     .expect(shoppingCartPage.quantityInput.value)
-    .eql(INCREASED_QTY)
+    .contains(INCREASED_QTY)
     .expect(shoppingCartPage.productPrice.innerText)
     .contains(`${data.product1.price}`)
     .expect(shoppingCartPage.cartSubtotalItems.innerText)
@@ -141,7 +141,7 @@ test.before(async (t) => {
   await t.click(shoppingCartPage.saveForLaterBtn);
   await t
     .expect(shoppingCartPage.pageTitle.innerText)
-    .eql('Shopping Cart')
+    .contains('Shopping Cart')
     .expect(shoppingCartPage.saveLaterText.innerText)
     .contains(`${data.product1.title} has been moved to Save for Later.`)
     .expect(shoppingCartPage.saveLaterTextLink.getAttribute('href'))
@@ -153,7 +153,7 @@ test.before(async (t) => {
 
   await t
     .expect(shoppingCartPage.savedCardTitle.innerText)
-    .eql('Saved for later (1 item)')
+    .contains('Saved for later (1 item)')
     .expect(shoppingCartPage.productTitleText.innerText)
     .contains(data.product1.title)
     .expect(shoppingCartPage.productTitleLink.getAttribute('href'))
@@ -167,7 +167,7 @@ test.before(async (t) => {
     .expect(shoppingCartPage.productPrice.innerText)
     .contains(`${data.product1.price}`)
     .expect(shoppingCartPage.productAvailability.innerText)
-    .eql(data.product1.stock)
+    .contains(data.product1.stock)
     .expect(shoppingCartPage.removeItemBtn.visible && shoppingCartPage.removeItemBtn.exists)
     .ok()
     .expect(shoppingCartPage.moveToCartBtn.visible && shoppingCartPage.moveToCartBtn.exists)
@@ -186,9 +186,9 @@ test.before(async (t) => {
   await t.click(shoppingCartPage.removeItemBtn);
   await t
     .expect(shoppingCartPage.emptyCartTitle.innerText)
-    .eql('Your Shopping Cart is empty.')
+    .contains('Your Shopping Cart is empty.')
     .expect(shoppingCartPage.removedText.innerText)
-    .eql(`${data.product1.title} was removed from Shopping Cart.`)
+    .contains(`${data.product1.title} was removed from Shopping Cart.`)
     .expect(shoppingCartPage.removedTextLink.getAttribute('href'))
     .contains(`/gp/product/${data.product1.productId}/ref=ox_sc_act_title_1`)
     .expect(shoppingCartPage.cartSubtotalItems.innerText)
@@ -212,7 +212,7 @@ test.before(async (t) => {
     .expect(orderSummary.orderTotalText.innerText)
     .contains(`Cart subtotal (2 items)`)
     .expect(orderSummary.orderTotalPrice.innerText)
-    .eql(`$${TOTAL_PRICE}`);
+    .contains(`$${TOTAL_PRICE}`);
 
   // verify shopping cart page
   await t.click(orderSummary.cartBtn);
@@ -241,7 +241,7 @@ test.before(async (t) => {
     .expect(orderSummary.itemCreator.innerText)
     .contains(data.product2.author)
     .expect(orderSummary.itemPrice.innerText)
-    .eql(`$${data.product2.price}`)
+    .contains(`$${data.product2.price}`)
     .expect(orderSummary.itemPicture.visible && orderSummary.itemPicture.exists)
     .ok()
     .expect(orderSummary.itemTitleLink.getAttribute('href'))
